@@ -23,12 +23,8 @@ const WebstoreWrapper = styled.div`
   }
 
   @media (max-width: 401px) {
-    align-items: center;
-    padding: 20px;
-  }
-
-  @media (max-width: 375px) {
     align-items: flex-start;
+    padding: 20px;
   }
 
   .item {

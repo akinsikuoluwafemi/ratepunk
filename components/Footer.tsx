@@ -157,6 +157,14 @@ const FooterContact = styled.div`
 `;
 
 const Footer = () => {
+  const Links = [
+    'Price Comparison',
+    'Chrome Extension',
+    'How It Works',
+    'Ratepunk Blog',
+    'Privacy Policy',
+  ];
+
   return (
     <FooterWrapper>
       <FooterLeft>
@@ -180,25 +188,11 @@ const Footer = () => {
         <FooterLinks>
           <li>QUICK LINKS</li>
 
-          <li>
-            <Link href="">Price Comparison</Link>
-          </li>
-
-          <li>
-            <Link href="">Chrome Extension</Link>
-          </li>
-
-          <li>
-            <Link href="">How It Works</Link>
-          </li>
-
-          <li>
-            <Link href="">Ratepunk Blog</Link>
-          </li>
-
-          <li>
-            <Link href="">Privacy Policy</Link>
-          </li>
+          {Links.map((link) => (
+            <li key={link}>
+              <Link href="">{link}</Link>
+            </li>
+          ))}
         </FooterLinks>
 
         <FooterContact>

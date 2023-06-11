@@ -40,7 +40,7 @@ const HeaderWrapper = styled.nav`
 const MobileHeaderWrapper = styled.header<{ toggleMenu: boolean }>`
   background-color: #fff;
 
-  height: ${(props) => (props.toggleMenu ? '200px' : '70px')};
+  height: ${(props) => (props.toggleMenu ? '200px' : '75px')};
   border-bottom: 1px solid #777;
   padding: 0 50px;
   transition: all 0.1s ease;
@@ -92,6 +92,8 @@ const Header = () => {
 
   const isTabletOrMobile = useMediaQuery({ query: '(min-width: 890px)' });
 
+  const navLinks = ['Chrome Extension', 'Price Comparison', 'Blog'];
+
   return (
     <>
       {isTabletOrMobile && (
@@ -113,15 +115,11 @@ const Header = () => {
 
           <div className="left-side">
             <ul>
-              <li>
-                <Link href="">Chrome Extension</Link>
-              </li>
-              <li>
-                <Link href="">Price Comparison</Link>
-              </li>
-              <li>
-                <Link href="">Blog</Link>
-              </li>
+              {navLinks.map((link) => (
+                <li key={link}>
+                  <Link href="">{link}</Link>
+                </li>
+              ))}
             </ul>
           </div>
         </HeaderWrapper>
@@ -156,15 +154,11 @@ const Header = () => {
           </nav>
           <div className="nav-item-wrapper">
             <ul>
-              <li>
-                <Link href="">Chrome Extension</Link>
-              </li>
-              <li>
-                <Link href="">Price Comparison</Link>
-              </li>
-              <li>
-                <Link href="">Blog</Link>
-              </li>
+              {navLinks.map((link) => (
+                <li key={link}>
+                  <Link href="">{link}</Link>
+                </li>
+              ))}
             </ul>
           </div>
         </MobileHeaderWrapper>
