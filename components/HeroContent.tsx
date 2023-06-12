@@ -108,7 +108,6 @@ const StepItemContent = styled.div`
   justify-content: space-between;
   align-items: flex-start;
   gap: 10px;
-  // width: 50%;
 
   p:first-child {
     font-weight: 700;

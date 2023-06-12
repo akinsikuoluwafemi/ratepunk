@@ -40,6 +40,7 @@ const WebstoreWrapper = styled.div`
     padding-bottom: 10px;
     padding-right: 15px;
     transition: all 0.3s ease-in-out;
+    color: #fff;
 
     @media (max-width: 889px) {
       padding: 0;
@@ -61,6 +62,7 @@ const WebstoreWrapper = styled.div`
       display: flex;
       justify-content: space-between;
       align-items: center;
+      color: #fff;
     }
   }
 

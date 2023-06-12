@@ -10,7 +10,6 @@ import Image from 'next/image';
 const Form = styled.form<{ haserror: boolean }>`
   color: #333;
   position: relative;
-  // margin-top: 50px;
 
   .email-logo {
     position: absolute;

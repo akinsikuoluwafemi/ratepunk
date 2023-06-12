@@ -2,9 +2,8 @@ import Image from 'next/image';
 import Link from 'next/link';
 import React from 'react';
 import styled from 'styled-components';
-import { useMediaQuery } from 'react-responsive';
 
-const HeaderWrapper = styled.nav`
+const HeaderWrapper = styled.header`
   background-color: #fff;
   padding: 0 200px;
   color: teal;
@@ -12,14 +11,18 @@ const HeaderWrapper = styled.nav`
   justify-content: space-between;
   align-items: center;
   border-bottom: 1px solid #777;
+  display: none;
 
   @media (max-width: 1180px) {
     padding: 0 50px;
   }
 
+  @media (min-width: 890px) {
+    display: flex;
+  }
+
   .right-side {
     flex: 0 0 50%;
-    // background-color: purple;
   }
   .left-side {
     flex: 0 0 50%;
@@ -37,16 +40,20 @@ const HeaderWrapper = styled.nav`
   }
 `;
 
-const MobileHeaderWrapper = styled.header<{ toggleMenu: boolean }>`
+const MobileHeaderWrapper = styled.header<{ togglemenu: boolean }>`
   background-color: #fff;
-
-  height: ${(props) => (props.toggleMenu ? '200px' : '75px')};
+  height: ${(props) => (props.togglemenu ? '200px' : '75px')};
   border-bottom: 1px solid #777;
   padding: 0 50px;
   transition: all 0.1s ease;
+  display: none;
+
+  @media (max-width: 889px) {
+    display: block;
+  }
 
   @media (max-width: 401px) {
-    padding: 0 20px;
+    padding: 0px 20px;
   }
 
   .menu-icon {
@@ -62,10 +69,10 @@ const MobileHeaderWrapper = styled.header<{ toggleMenu: boolean }>`
 
   .nav-item-wrapper {
     background-color: transparent;
-    height: ${(props) => (props.toggleMenu ? '110px' : '0px')};
+    height: ${(props) => (props.togglemenu ? '110px' : '0px')};
     overflow: hidden;
-    opacity: ${(props) => (props.toggleMenu ? '1' : '0')};
-    display: ${(props) => (props.toggleMenu ? 'flex' : 'none')};
+    opacity: ${(props) => (props.togglemenu ? '1' : '0')};
+    display: ${(props) => (props.togglemenu ? 'flex' : 'none')};
     transition: all 0.3s ease-in-out;
 
     ul {
@@ -86,83 +93,73 @@ const MobileHeaderWrapper = styled.header<{ toggleMenu: boolean }>`
 const Header = () => {
   const [toggleMenu, setToggleMenu] = React.useState(false);
 
-  const isDesktopOrLaptop = useMediaQuery({
-    query: '(max-width: 889px)',
-  });
-
-  const isTabletOrMobile = useMediaQuery({ query: '(min-width: 890px)' });
-
   const navLinks = ['Chrome Extension', 'Price Comparison', 'Blog'];
 
   return (
     <>
-      {isTabletOrMobile && (
-        <HeaderWrapper>
-          <div className="right-side">
-            <ul>
-              <li>
-                <Link href="/">
-                  <Image
-                    src="/assets/logo.svg"
-                    alt="Logo of app"
-                    width={100}
-                    height={70}
-                  />
-                </Link>
-              </li>
-            </ul>
-          </div>
+      <HeaderWrapper>
+        <div className="right-side">
+          <ul>
+            <li>
+              <Link href="/">
+                <Image
+                  src="/assets/logo.svg"
+                  alt="Logo of app"
+                  width={100}
+                  height={70}
+                />
+              </Link>
+            </li>
+          </ul>
+        </div>
 
-          <div className="left-side">
-            <ul>
-              {navLinks.map((link) => (
-                <li key={link}>
-                  <Link href="">{link}</Link>
-                </li>
-              ))}
-            </ul>
-          </div>
-        </HeaderWrapper>
-      )}
-
-      {isDesktopOrLaptop && (
-        <MobileHeaderWrapper toggleMenu={toggleMenu}>
-          <nav className="nav-mobile">
-            <ul>
-              <li>
-                <Link href="/">
-                  <Image
-                    src="/assets/logo.svg"
-                    alt="Logo of app"
-                    width={100}
-                    height={70}
-                  />
-                </Link>
+        <div className="left-side">
+          <ul>
+            {navLinks.map((link) => (
+              <li key={link}>
+                <Link href="">{link}</Link>
               </li>
-            </ul>
-            <span
-              className="menu-icon"
-              onClick={() => setToggleMenu((prev) => !prev)}
-            >
-              <Image
-                src="/assets/menu.svg"
-                alt="Menu icon"
-                width={30}
-                height={30}
-              />
-            </span>
-          </nav>
-          <div className="nav-item-wrapper">
-            <ul>
-              {navLinks.map((link) => (
-                <li key={link}>
-                  <Link href="">{link}</Link>
-                </li>
-              ))}
-            </ul>
-          </div>
-        </MobileHeaderWrapper>
-      )}
+            ))}
+          </ul>
+        </div>
+      </HeaderWrapper>
+
+      <MobileHeaderWrapper togglemenu={toggleMenu}>
+        <nav className="nav-mobile">
+          <ul>
+            <li>
+              <Link href="/">
+                <Image
+                  src="/assets/logo.svg"
+                  alt="Logo of app"
+                  width={100}
+                  height={70}
+                />
+              </Link>
+            </li>
+          </ul>
+          <span
+            className="menu-icon"
+            onClick={() => setToggleMenu((prev) => !prev)}
+          >
+            <Image
+              src="/assets/menu.svg"
+              alt="Menu icon"
+              width={30}
+              height={30}
+            />
+          </span>
+        </nav>
+        <div className="nav-item-wrapper">
+          <ul>
+            {navLinks.map((link) => (
+              <li key={link}>
+                <Link href="">{link}</Link>
+              </li>
+            ))}
+          </ul>
+        </div>
+      </MobileHeaderWrapper>
     </>
   );
 };
